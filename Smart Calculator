@@ -1,0 +1,34 @@
+# Smart Calculator – handles multi-digit and multiple operations
+
+def calculator():
+    print("------ Smart Calculator ------")
+    print("Type your expression (e.g., 12+3456*78/2)")
+    print("You can use +, -, *, /, (, ) operators")
+    print("Type 'clear' to reset or 'exit' to quit\n")
+
+    while True:
+        expression = input("Enter expression: ").strip()
+
+        if expression.lower() == 'exit':
+            print("Exiting Calculator. Goodbye!")
+            break
+        elif expression.lower() == 'clear':
+            print("\nCalculator cleared!\n")
+            continue
+
+        try:
+            # Replace common symbols like 'x' or '×' with '*'
+            expression = expression.replace('x', '*').replace('X', '*').replace('×', '*')
+
+            # Evaluate the expression safely
+            result = eval(expression)
+            print(f"Result: {result}\n")
+
+        except ZeroDivisionError:
+            print("Error: Cannot divide by zero!\n")
+        except Exception:
+            print("Invalid input! Please enter a valid expression.\n")
+
+# Run the calculator
+if __name__ == "__main__":
+    calculator()
